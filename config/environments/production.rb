@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins 'hoppscotch.io'
+      resource '*', headers: :any, methods: [:get, :post, :patch, :put, :delete]
+    end
+  end
   # Code is not reloaded between requests.
   config.cache_classes = true
 
